@@ -32,7 +32,7 @@ public class GravityController : MonoBehaviour
     {
         if (!ApplyGravity) return;        
 
-        if(Physics.SphereCast(_root.position + Vector3.up * (_collisionRadius + 0.1f), _collisionRadius, Vector3.down, out _hit, Mathf.Infinity, _collisionLayers))
+        if(Physics.SphereCast(_root.position + Vector3.up * (_collisionRadius + 2f), _collisionRadius, Vector3.down, out _hit, Mathf.Infinity, _collisionLayers))
         {
             _isGrounded = Vector3.Distance(_root.position, _hit.point) <= _collisionRadius;
         }

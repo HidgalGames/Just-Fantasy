@@ -4,7 +4,11 @@ using Zenject;
 
 public class MoveController : MonoBehaviour
 {
+    [Inject] CameraController _cameraController;
+
     [SerializeField] private GravityController _gravityController;
+    [SerializeField] private CollisionChecker _collisionChecker;
+    [Space]
     [SerializeField] private Transform _root;
     [SerializeField] private Animator _animator;
     [Space]
@@ -15,9 +19,9 @@ public class MoveController : MonoBehaviour
     [SerializeField] private float _runAccelerationTime;
     [SerializeField] private AnimationCurve _accelerationGraph;
     [Space]
+    [SerializeField] private float _maxStepHeight;
+    [Space]
     [SerializeField] private float _rotationSpeed;
-
-    [Inject] CameraController _cameraController;
 
     [Space]
     [Header("Debug")]
@@ -27,9 +31,10 @@ public class MoveController : MonoBehaviour
 
     private DateTime _startRunTime;
     private float _runAccelerateCoef;
-    private float _speedAtRunStart;
 
     private Vector3 _direction = Vector3.zero;
+    
+    private Vector3 _targetPosition;
     private Quaternion _targetRotation;
 
     private const string IS_MOVING_NAME = "IsMoving";
@@ -84,7 +89,6 @@ public class MoveController : MonoBehaviour
         if (IsRunning)
         {
             _startRunTime = DateTime.Now;
-            _speedAtRunStart = _currentSpeed;
         }
         else
         {
@@ -126,19 +130,24 @@ public class MoveController : MonoBehaviour
 
         _lerpTargetSpeed = IsMoving ? _targetSpeed : 0f;
 
-        if (IsRunning)
-        {
-            _runAccelerateCoef = _accelerationGraph.Evaluate(Mathf.Clamp01((float)(DateTime.Now - _startRunTime).TotalSeconds / _runAccelerationTime));
-        }
-
         _currentSpeed = Mathf.Lerp(_currentSpeed, _lerpTargetSpeed, 1f / _accelerationTime * Time.fixedDeltaTime);
 
-        _root.position = Vector3.Lerp(_root.transform.position, _root.transform.position + _direction * _currentSpeed * _runAccelerateCoef, _currentSpeed * Time.deltaTime);
-
-        if (IsMoving)
+        if(_currentSpeed > 0)
         {
-            _targetRotation = Quaternion.LookRotation(_direction, _root.up);
-            _root.localRotation = Quaternion.Slerp(_root.localRotation, _targetRotation, _rotationSpeed * Time.fixedDeltaTime);
+            if (IsRunning)
+            {
+                _runAccelerateCoef = _accelerationGraph.Evaluate(Mathf.Clamp01((float)(DateTime.Now - _startRunTime).TotalSeconds / _runAccelerationTime));
+            }
+
+            //_targetPosition = Vector3.Lerp(_root.transform.position, _root.transform.position + _direction * _currentSpeed * _runAccelerateCoef, _currentSpeed * Time.deltaTime);
+            _targetPosition = _collisionChecker.GetPositionByCollision(_root.position, _direction, _currentSpeed * _runAccelerateCoef, _maxStepHeight);
+            _root.position = Vector3.Lerp(_root.position, _targetPosition, _currentSpeed * Time.fixedDeltaTime);
+
+            if (IsMoving)
+            {
+                _targetRotation = Quaternion.LookRotation(_direction, _root.up);
+                _root.localRotation = Quaternion.Slerp(_root.localRotation, _targetRotation, _rotationSpeed * Time.fixedDeltaTime);
+            }
         }
 
         if (_animator)
