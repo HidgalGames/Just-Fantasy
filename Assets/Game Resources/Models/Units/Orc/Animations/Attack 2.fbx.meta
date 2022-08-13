@@ -25,10 +25,7 @@ ModelImporter:
     animationImportWarnings: "\nClip 'mixamo.com' has import animation warnings that
       might lower retargeting quality:\n\t'Neck' is inbetween humanoid transforms
       and has rotation animation that will be discarded.\n"
-    animationRetargetingWarnings: "\nRetargeting quality report for clip 'mixamo.com':\n\tLeftHand
-      average position error 0.3 mm and maximum position error 3.9 mm at time 0:20
-      (24.4%) Frame 20\n\tRightHand average position error 1.2 mm and maximum position
-      error 19.9 mm at time 1:20 (61.0%) Frame 50\n"
+    animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 0
     importAnimatedCustomProperties: 0
     importConstraints: 0
