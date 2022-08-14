@@ -24,6 +24,6 @@ public class CameraFovController : MonoBehaviour
         if (!_moveController) return;
 
         _targetFov = Mathf.Clamp(_baseFOV * _moveController.CurrentMoveSpeed / _moveController.BaseMoveSpeed, _baseFOV, _maxFOV);
-        _cameraController.CurrentCamera.m_Lens.FieldOfView = Mathf.Lerp(_cameraController.CurrentCamera.m_Lens.FieldOfView, _targetFov, _fovChangeSpeed * Time.smoothDeltaTime);
+        _cameraController.ThirdPersonCamera.m_Lens.FieldOfView = Mathf.Lerp(_cameraController.ThirdPersonCamera.m_Lens.FieldOfView, _targetFov, _fovChangeSpeed * Time.smoothDeltaTime);
     }
 }
