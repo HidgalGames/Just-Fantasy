@@ -47,6 +47,7 @@ public class MoveController : MonoBehaviour
     public float CurrentMoveSpeed => _resultingSpeed;
     public float BaseMoveSpeed => _moveSpeed;
 
+    public bool IsGrounded => _gravityController.IsGrounded;
     public bool IsRunning { get; private set; }
     public bool IsMoving { get; private set; }
     public bool IsUpdatingPosition { get; private set; } = true;
