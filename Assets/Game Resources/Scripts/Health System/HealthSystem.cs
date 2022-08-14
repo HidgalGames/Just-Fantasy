@@ -28,9 +28,20 @@ public class HealthSystem : MonoBehaviour
     public event Action<DamageInfo> OnDamaged;
     public event Action<int> OnHealed;
 
+    //temp
     private void Awake()
     {
         ResetHealth();
+    }
+
+    public void SetMaxHealth(int maxHealth, bool resetHealth = false)
+    {
+        _maxHealth = maxHealth;
+
+        if (resetHealth)
+        {
+            ResetHealth();
+        }
     }
 
     public void Revive(int healCount)
