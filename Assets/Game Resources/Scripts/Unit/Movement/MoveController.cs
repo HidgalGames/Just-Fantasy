@@ -25,7 +25,9 @@ public class MoveController : MonoBehaviour
 
     [Space]
     [Header("Debug")]
-    [SerializeField] private float _currentSpeed;
+    [SerializeField] private float _resultingSpeed;
+    
+    private float _currentSpeed;
     private float _targetSpeed;
     private float _lerpTargetSpeed;
 
@@ -42,7 +44,7 @@ public class MoveController : MonoBehaviour
 
     public CameraFovController FovController => _cameraController.FovController;
 
-    public float CurrentMoveSpeed => _currentSpeed;
+    public float CurrentMoveSpeed => _resultingSpeed;
     public float BaseMoveSpeed => _moveSpeed;
 
     public bool IsRunning { get; private set; }
@@ -131,16 +133,18 @@ public class MoveController : MonoBehaviour
         _lerpTargetSpeed = IsMoving ? _targetSpeed : 0f;
 
         _currentSpeed = Mathf.Lerp(_currentSpeed, _lerpTargetSpeed, 1f / _accelerationTime * Time.fixedDeltaTime);
+        _resultingSpeed = _currentSpeed * _runAccelerateCoef;
 
-        if(_currentSpeed > 0)
+        if (_currentSpeed > 0)
         {
             if (IsRunning)
             {
                 _runAccelerateCoef = _accelerationGraph.Evaluate(Mathf.Clamp01((float)(DateTime.Now - _startRunTime).TotalSeconds / _runAccelerationTime));
             }
 
-            //_targetPosition = Vector3.Lerp(_root.transform.position, _root.transform.position + _direction * _currentSpeed * _runAccelerateCoef, _currentSpeed * Time.deltaTime);
-            _targetPosition = _collisionChecker.GetPositionByCollision(_root.position, _direction, _currentSpeed * _runAccelerateCoef, _maxStepHeight);
+            _resultingSpeed = Mathf.Lerp(_resultingSpeed, _currentSpeed * _runAccelerateCoef, 1f / _runAccelerationTime * Time.fixedDeltaTime);
+
+            _targetPosition = _collisionChecker.GetPositionByCollision(_root.position, _direction, _resultingSpeed, _maxStepHeight);
             _root.position = Vector3.Lerp(_root.position, _targetPosition, _currentSpeed * Time.fixedDeltaTime);
 
             if (IsMoving)
@@ -152,7 +156,7 @@ public class MoveController : MonoBehaviour
 
         if (_animator)
         {
-            _animator.SetFloat(MOVE_SPEED_NAME, _currentSpeed / _moveSpeed);
+            _animator.SetFloat(MOVE_SPEED_NAME, _resultingSpeed / _moveSpeed);
         }
     }
 }
