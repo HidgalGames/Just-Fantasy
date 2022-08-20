@@ -11,9 +11,7 @@ public class CameraDistanceController : MonoBehaviour
 
     [Inject] CameraController _cameraController;
 
-    private float _targetCoef = 1f;
     private float _currentDistanceCoef = 1f;
-
     private float[] _baseValues;
 
     private void Awake()

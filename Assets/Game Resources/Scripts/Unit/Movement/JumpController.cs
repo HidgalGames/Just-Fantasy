@@ -39,7 +39,6 @@ public class JumpController : MonoBehaviour
             if (!IsUpperCollisionBlocksJump())
             {
                 _gravity.ApplyGravity = false;
-                _moveController.CanChangeDirection = false;
 
                 _currentJumpHeight = CalculateJumpHeight();
                 _targetHeight = _root.position.y + _currentJumpHeight;
@@ -79,7 +78,6 @@ public class JumpController : MonoBehaviour
     {
         IsJumping = false;
         _gravity.ApplyGravity = true;
-        _moveController.CanChangeDirection = true;
 
         _unit.StopActing();
     }

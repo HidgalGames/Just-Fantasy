@@ -9,15 +9,13 @@ public class CameraFovController : MonoBehaviour
     [Space]
     [SerializeField] private float _fovChangeSpeed = 10f;
 
-    [Inject] CameraController _cameraController;
+    [Inject] private CameraController _cameraController;
+    [Inject] private PlayerUnit _player;
 
-    private MoveController _moveController;
     private float _targetFov;
 
-    public void SetupMoveController(MoveController controller)
-    {
-        _moveController = controller;
-    }
+    private MoveController _moveController => _player.MoveController;
+
 
     private void LateUpdate()
     {

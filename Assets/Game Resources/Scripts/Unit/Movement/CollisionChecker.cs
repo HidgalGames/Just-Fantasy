@@ -2,51 +2,26 @@ using UnityEngine;
 
 public class CollisionChecker : MonoBehaviour
 {
-    [SerializeField] private Vector3 _collisionSize = Vector3.one;
-    [SerializeField] private Vector3 _centerOffset;
+    [SerializeField] private CapsuleCollider _collider;
     [Space]
     [SerializeField] private LayerMask _layerMask;
+    [Space]
+    [Range(0.01f, 1f)][SerializeField] private float _speedDecreaseOnCollision = 0.5f;
 
-    public Vector3 GetPositionByCollision(Vector3 position, Vector3 direction, float moveDelta, float maxCollisionHeight)
+    public Vector3 CalculateDirection(Vector3 position, Vector3 direction, ref float moveDelta, float maxCollisionHeight)
     {
-        var delta = moveDelta;
-        Vector3 newDirection;
-        Vector3 newPosition = position + direction * moveDelta;
-
-        Debug.DrawLine(position + maxCollisionHeight * Vector3.up, position + maxCollisionHeight * Vector3.up + direction * delta, Color.red);
-
-        if (Physics.Raycast(position + maxCollisionHeight * Vector3.up, direction, out var lowerHit, delta, _layerMask))
+        if (Physics.Raycast(position + maxCollisionHeight * Vector3.up, direction, out var lowerHit, moveDelta + _collider.radius, _layerMask, QueryTriggerInteraction.Ignore))
         {
-            var boxCenterPosition = position + Vector3.up * (_collisionSize.y / 2f) + _centerOffset;
+            var collider = lowerHit.collider;
 
-            newDirection = (lowerHit.point - position).normalized;
-            newPosition = position + newDirection * moveDelta;
-
-            if (Physics.BoxCast(boxCenterPosition, _collisionSize / 2f, direction, out var boxHit, Quaternion.identity, delta, _layerMask, QueryTriggerInteraction.Ignore))
+            if (Physics.ComputePenetration(_collider, position, Quaternion.identity,
+                collider, collider.transform.position, collider.transform.rotation, out var dir, out var dist))
             {
-                if (boxHit.point.y - position.y > maxCollisionHeight)
-                {
-                    newPosition = boxHit.point + boxHit.normal * _collisionSize.x;
-                    newPosition.y = position.y;
-
-                    Debug.DrawLine(position + maxCollisionHeight * Vector3.up, position + maxCollisionHeight * Vector3.up + newDirection * delta, Color.blue);
-                }
+                direction = (dir + transform.forward).normalized;
+                moveDelta = _speedDecreaseOnCollision * moveDelta;
             }
         }
 
-        return newPosition;
+        return direction;
     }
-
-    /*
-#if UNITY_EDITOR
-
-    private void OnDrawGizmos()
-    {
-        Gizmos.color = Color.green;
-
-        Gizmos.DrawWireCube(transform.position + Vector3.up * (_collisionSize.y / 2f) + _centerOffset, _collisionSize);
-    }
-
-#endif
-    */
 }

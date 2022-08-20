@@ -1,17 +1,20 @@
 using TMPro;
 using TweenComponents;
 using UnityEngine;
+using Zenject;
 
 public class Healthbar : MonoBehaviour
 {
-    [SerializeField] protected HealthSystem _healthSystem;
-    [Space]
     [SerializeField] protected ImageFillAmountTween _redFillTween;
     [SerializeField] protected ImageFillAmountTween _greenFillTween;
     [SerializeField] protected TweenSequence _tweenSequence;
     [Space]
     [SerializeField] protected TextMeshProUGUI _healthText;
     [SerializeField] protected PushScaleTween _scaleTween;
+
+    [Inject] protected PlayerUnit _player;
+
+    protected HealthSystem _healthSystem => _player.HealthSystem;
 
     protected virtual void Awake()
     {
