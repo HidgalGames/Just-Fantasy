@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1720558104943652365}
   - component: {fileID: 1720558104943652362}
+  - component: {fileID: 4989061021981068919}
   m_Layer: 0
   m_Name: Input Handler
   m_TagString: Untagged
@@ -44,8 +45,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e3ff28e31c427e4c9139d45b7e1eb91, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _blockable: {fileID: 4989061021981068919}
   _moveController: {fileID: 1720558105152282412}
   _jumpController: {fileID: 1720558105152282410}
+--- !u!114 &4989061021981068919
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1720558104943652364}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba8a635393f9b7a41bc23fe328be6993, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _blockersCount: 0
 --- !u!1 &1720558105152282385
 GameObject:
   m_ObjectHideFlags: 0

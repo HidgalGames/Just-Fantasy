@@ -79,6 +79,11 @@ public class MoveController : MonoBehaviour
         {
             _runAccelerateCoef = 1f;
         }
+
+        if (!IsMoving)
+        {
+            MoveInDirection(Vector3.forward);
+        }
     }
 
     public void StopMovig()

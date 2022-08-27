@@ -264,6 +264,7 @@ GameObject:
   - component: {fileID: 5178764065850749497}
   - component: {fileID: 5178764065850749498}
   - component: {fileID: 5178764065850749496}
+  - component: {fileID: 2965853514502680677}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -417,6 +418,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f0de15fff79725048818037e78fba04e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _blockable: {fileID: 2965853514502680677}
   _fovControler: {fileID: 5178764065850749498}
   _thirdPersonCamera: {fileID: 5178764065564416490}
 --- !u!114 &5178764065850749498
@@ -452,6 +454,19 @@ MonoBehaviour:
   _minDistanceInPercents: 0.8
   _scrollScensitivity: 0.15
   _changeDistanceSpeed: 1.5
+--- !u!114 &2965853514502680677
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5178764065850749488}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba8a635393f9b7a41bc23fe328be6993, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _blockersCount: 0
 --- !u!1 &5178764066090519191
 GameObject:
   m_ObjectHideFlags: 3

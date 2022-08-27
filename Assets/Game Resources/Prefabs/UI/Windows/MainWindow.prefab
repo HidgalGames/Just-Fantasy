@@ -96,9 +96,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d57d20a940a668c4c9b2f43e47e07b27, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <WindowName>k__BackingField: MainScreen
+  <WindowName>k__BackingField: MainWindow
   _canBeDisabled: 1
-  _isEnabled: 0
+  <IsAdditive>k__BackingField: 0
+  <IsBlockingPlayerInput>k__BackingField: 0
+  <IsCursorVisible>k__BackingField: 0
+  <IsEnabled>k__BackingField: 0
 --- !u!1001 &4397871542708811555
 PrefabInstance:
   m_ObjectHideFlags: 0

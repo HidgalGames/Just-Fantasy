@@ -11,6 +11,8 @@ GameObject:
   - component: {fileID: 5077330679047298014}
   - component: {fileID: 5087900780360101968}
   - component: {fileID: -7600358761463736134}
+  - component: {fileID: 3056211637924035540}
+  - component: {fileID: 936253538651804561}
   m_Layer: 0
   m_Name: GameWindowsHandler
   m_TagString: Untagged
@@ -47,6 +49,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _gameWindowPrefabs:
   - {fileID: -5681555370814935381, guid: a20dea346457696469034f1d40851c7d, type: 3}
+  - {fileID: 1159129469024716319, guid: 13b9c607c435ec442ac20c8ef7d9e5b0, type: 3}
 --- !u!114 &-7600358761463736134
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -60,5 +63,32 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _cursorStateOnStart: 0
-  _blockersCount: 0
   _hotkeySwitcher: 104
+  _blockersCount: 0
+--- !u!114 &3056211637924035540
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2872532070678410595}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d7b7aa03d5237247a3e9b61d14f65f8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _windowsHandler: {fileID: 5087900780360101968}
+--- !u!114 &936253538651804561
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2872532070678410595}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1373f76b4e3d7e94c8ab479fc58351ae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _windowsHandler: {fileID: 5087900780360101968}
+  _cursorController: {fileID: -7600358761463736134}

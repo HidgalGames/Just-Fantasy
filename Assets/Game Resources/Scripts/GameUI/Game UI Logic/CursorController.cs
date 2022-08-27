@@ -37,13 +37,18 @@ namespace GameUI.Logic
 
         public void SwitchState()
         {
-            if (Cursor.visible)
+            SetState(!Cursor.visible);
+        }
+
+        public void SetState(bool isVisible)
+        {
+            if (isVisible)
             {
-                HideCursor();
+                ShowCursor();
             }
             else
             {
-                ShowCursor();
+                HideCursor();
             }
         }
 
