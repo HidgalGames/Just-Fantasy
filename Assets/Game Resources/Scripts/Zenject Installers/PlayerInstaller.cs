@@ -8,9 +8,11 @@ namespace Zenject.Installers
 
         public override void InstallBindings()
         {
-            var player = Container.InstantiatePrefabForComponent<PlayerUnit>(_playerPrefab);
+            var playerInstance = Container.InstantiatePrefabForComponent<PlayerUnit>(_playerPrefab);
 
-            Container.Bind<PlayerUnit>().FromInstance(player).AsSingle().NonLazy();
+            Container.Bind<PlayerUnit>().FromInstance(playerInstance).AsSingle().NonLazy();
+
+            playerInstance.transform.SetParent(null);
         }
     }
 }

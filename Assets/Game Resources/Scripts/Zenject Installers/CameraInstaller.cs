@@ -10,6 +10,8 @@ namespace Zenject.Installers
         {
             var controllerInstance = Container.InstantiatePrefabForComponent<CameraController>(_cameraControllerPrefab);
             Container.Bind<CameraController>().FromInstance(controllerInstance).AsSingle();
+
+            controllerInstance.transform.SetParent(null);
         }
     }
 }
