@@ -24,7 +24,7 @@ namespace TweenComponents
         public bool IsCompleted { get; private set; }
         public bool IsPlaying { get; private set; }
 
-        public event Action<bool> OnCompleted;
+        public event Action OnCompleted;
 
         private void OnEnable()
         {
@@ -50,7 +50,7 @@ namespace TweenComponents
             StartTween();
         }
 
-        private void OnTweenCompleted(bool straight)
+        private void OnTweenCompleted()
         {
             CurrentTween.OnCompleted -= OnTweenCompleted;
 
@@ -61,7 +61,7 @@ namespace TweenComponents
                 Stop();
 
                 IsCompleted = true;
-                OnCompleted?.Invoke(_isStraight);
+                OnCompleted?.Invoke();
                 return;
             }
 
@@ -75,7 +75,7 @@ namespace TweenComponents
 
             if (ThrowStraightStateInTweens)
             {
-                CurrentTween.Execute(_isStraight);
+                CurrentTween.Execute();
             }
             else
             {
