@@ -1,8 +1,10 @@
+using Extensions;
 using UnityEngine;
 
 public class PlayerUnit : Unit
 {
-    [SerializeField] private MoveController _moveController;
-
-    public MoveController MoveController => _moveController;
+    [field: Space]
+    [field: Header("Player Unit Components")]
+    [field: SerializeField] public PlayerInputHandler InputHandler { get; private set; }
+    [field: SerializeField] public MoveController MoveController { get; private set; }
 }

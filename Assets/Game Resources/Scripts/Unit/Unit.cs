@@ -1,14 +1,14 @@
+using Extensions;
 using UnityEngine;
 
 public class Unit : MonoBehaviour
 {
-    [SerializeField] private HealthSystem _healthSystem;
+    [field: Header("Base Unit Components")]
+    [field: SerializeField] public HealthSystem HealthSystem { get; protected set; }
 
     protected int _actingCount = 0;
 
     public bool IsActing => _actingCount > 0;
-
-    public HealthSystem HealthSystem => _healthSystem;
 
     public void StartActing()
     {
