@@ -9,9 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8819649429510691611}
+  - component: {fileID: -5681555370814935381}
   - component: {fileID: 8819649429510691612}
   - component: {fileID: 8819649429510691613}
-  - component: {fileID: -5681555370814935381}
   m_Layer: 5
   m_Name: MainWindow
   m_TagString: Untagged
@@ -40,6 +40,24 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &-5681555370814935381
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8819649429510691615}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d57d20a940a668c4c9b2f43e47e07b27, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <WindowName>k__BackingField: MainWindow
+  _canBeDisabled: 1
+  <IsAdditive>k__BackingField: 0
+  <IsBlockingPlayerInput>k__BackingField: 0
+  <IsCursorVisible>k__BackingField: 0
+  <IsOpened>k__BackingField: 0
 --- !u!223 &8819649429510691612
 Canvas:
   m_ObjectHideFlags: 0
@@ -84,24 +102,6 @@ MonoBehaviour:
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
   m_PresetInfoIsWorld: 0
---- !u!114 &-5681555370814935381
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8819649429510691615}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d57d20a940a668c4c9b2f43e47e07b27, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  <WindowName>k__BackingField: MainWindow
-  _canBeDisabled: 1
-  <IsAdditive>k__BackingField: 0
-  <IsBlockingPlayerInput>k__BackingField: 0
-  <IsCursorVisible>k__BackingField: 0
-  <IsEnabled>k__BackingField: 0
 --- !u!1001 &4397871542708811555
 PrefabInstance:
   m_ObjectHideFlags: 0

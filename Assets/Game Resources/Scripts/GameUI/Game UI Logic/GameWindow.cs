@@ -11,6 +11,7 @@ namespace GameUI.Logic
     public class GameWindow : MonoBehaviour
     {
         [field: SerializeField] public string WindowName { get; private set; }
+        [SerializeField] private GameObject _animationController;
         
         [Header("Settings")]
         [SerializeField] private bool _canBeDisabled = true;
@@ -46,6 +47,8 @@ namespace GameUI.Logic
             if (!isActive && !_canBeDisabled) return;
 
             IsOpened = isActive;
+
+            if(_animationController) _animationController.SetActive(IsOpened);
 
             foreach (var canvas in _canvases)
             {
