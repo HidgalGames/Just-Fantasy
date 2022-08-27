@@ -88,8 +88,8 @@ namespace TweenComponents
         protected Tween _tween;
         protected bool _straight;
 
-        public event Action<bool> OnStarted;
-        public event Action<bool> OnCompleted;
+        public event Action OnStarted;
+        public event Action OnCompleted;
 
         protected virtual void Awake()
         {
@@ -138,7 +138,7 @@ namespace TweenComponents
 
             _straight = straight;
             IsCompleted = false;
-            OnStarted?.Invoke(_straight);
+            OnStarted?.Invoke();
         }
 
         [ContextMenu("Stop")]
@@ -170,7 +170,7 @@ namespace TweenComponents
         {
             _tween = null;
             IsCompleted = true;
-            OnCompleted?.Invoke(_straight);
+            OnCompleted?.Invoke();
         }
 
         public virtual void ResetValue(bool applyStartValue = true) { }
