@@ -29,6 +29,8 @@ public class PlayerInputHandler : MonoBehaviour
 
     private void Update()
     {
+        if (IsBlocked) return;
+
         if (Input.GetKeyDown(KeyCode.LeftShift))
         {
             _moveController.SetRunState(true);
@@ -47,5 +49,10 @@ public class PlayerInputHandler : MonoBehaviour
     public void SetBlocked(bool isBlocked)
     {
         _blockable.SetBlocked(isBlocked);
+
+        if (isBlocked)
+        {
+            _moveController.ForceStopMoving();
+        }
     }
 }
