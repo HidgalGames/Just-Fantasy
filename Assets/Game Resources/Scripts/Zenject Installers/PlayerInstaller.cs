@@ -1,14 +1,16 @@
 using UnityEngine;
-using Zenject;
 
-public class PlayerInstaller : MonoInstaller
+namespace Zenject.Installers
 {
-    [SerializeField] private PlayerUnit _playerPrefab;
-
-    public override void InstallBindings()
+    public class PlayerInstaller : MonoInstaller
     {
-        var player = Container.InstantiatePrefabForComponent<PlayerUnit>(_playerPrefab);
+        [SerializeField] private PlayerUnit _playerPrefab;
 
-        Container.Bind<PlayerUnit>().FromInstance(player).AsSingle().NonLazy();
+        public override void InstallBindings()
+        {
+            var player = Container.InstantiatePrefabForComponent<PlayerUnit>(_playerPrefab);
+
+            Container.Bind<PlayerUnit>().FromInstance(player).AsSingle().NonLazy();
+        }
     }
 }

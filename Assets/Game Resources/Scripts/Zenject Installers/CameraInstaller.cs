@@ -1,12 +1,15 @@
 using UnityEngine;
-using Zenject;
 
-public class CameraInstaller : MonoInstaller
+namespace Zenject.Installers
 {
-    [SerializeField] private CameraController _cameraInstance;
-
-    public override void InstallBindings()
+    public class CameraInstaller : MonoInstaller
     {
-        Container.Bind<CameraController>().FromInstance(_cameraInstance).AsSingle();
+        [SerializeField] private CameraController _cameraControllerPrefab;
+
+        public override void InstallBindings()
+        {
+            var controllerInstance = Container.InstantiatePrefabForComponent<CameraController>(_cameraControllerPrefab);
+            Container.Bind<CameraController>().FromInstance(controllerInstance).AsSingle();
+        }
     }
 }

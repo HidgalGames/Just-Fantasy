@@ -1,21 +1,23 @@
 using UnityEngine;
-using Zenject;
 
 public class CameraDistanceController : MonoBehaviour
 {
+    [SerializeField] private CameraController _cameraController;
+    [Space]
+    [Header("Settings")]
     [Range(1f, 3f)][SerializeField] private float _maxDistanceInPercents = 1.5f;
     [Range(0.1f, 1f)][SerializeField] private float _minDistanceInPercents = 0.8f;
     [Space]
     [SerializeField] private float _scrollScensitivity = 0.2f;
     [SerializeField] private float _changeDistanceSpeed = 0.5f;
 
-    [Inject] CameraController _cameraController;
-
     private float _currentDistanceCoef = 1f;
     private float[] _baseValues;
 
     private void Awake()
     {
+        if (!_cameraController) _cameraController = GetComponent<CameraController>();
+
         _baseValues = new float[_cameraController.ThirdPersonCamera.m_Orbits.Length];
 
         for (int i = 0; i < _cameraController.ThirdPersonCamera.m_Orbits.Length; i++)
