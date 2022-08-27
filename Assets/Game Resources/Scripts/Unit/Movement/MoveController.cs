@@ -74,11 +74,6 @@ public class MoveController : MonoBehaviour
         if (IsRunning)
         {
             _startRunTime = DateTime.Now;
-
-            if (!IsMoving)
-            {
-                MoveInDirection(Vector3.forward);
-            }
         }
         else
         {
