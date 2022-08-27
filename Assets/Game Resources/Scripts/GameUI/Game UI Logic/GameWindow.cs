@@ -11,7 +11,7 @@ namespace GameUI.Logic
     public class GameWindow : MonoBehaviour
     {
         [field: SerializeField] public string WindowName { get; private set; }
-        [SerializeField] private GameObject _animationController;
+        [SerializeField] private TweenGroupExecute _animationController;
         
         [Header("Settings")]
         [SerializeField] private bool _canBeDisabled = true;
@@ -46,16 +46,36 @@ namespace GameUI.Logic
         {
             if (!isActive && !_canBeDisabled) return;
 
+            _animationController.OnCompleted -= DelayedDisabling;
+
             IsOpened = isActive;
 
-            if(_animationController) _animationController.SetActive(IsOpened);
+            _animationController.Execute(isActive);
 
-            foreach (var canvas in _canvases)
+            if(!IsOpened && _animationController)
             {
-                canvas.enabled = isActive;
+                //if we has animation controller then play window close animation
+                _animationController.OnCompleted += DelayedDisabling;
+            }
+            else
+            {
+                foreach (var canvas in _canvases)
+                {
+                    canvas.enabled = isActive;
+                }
             }
 
             OnWindowStateChanged?.Invoke(this, IsOpened);
+        }
+
+        private void DelayedDisabling()
+        {
+            _animationController.OnCompleted -= DelayedDisabling;
+
+            foreach (var canvas in _canvases)
+            {
+                canvas.enabled = false;
+            }
         }
 
 #if UNITY_EDITOR

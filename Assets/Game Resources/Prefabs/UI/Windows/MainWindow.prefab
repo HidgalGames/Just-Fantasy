@@ -1,5 +1,123 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &279640547156041369
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 316786537722756296}
+  - component: {fileID: 8406688770542361569}
+  m_Layer: 5
+  m_Name: Healthbar Animation
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &316786537722756296
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 279640547156041369}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 9132144157501526264}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &8406688770542361569
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 279640547156041369}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8409a29d24730a842b2564856860f394, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  BaseSettings:
+    StartDelay: 0
+    Duration: 0.3
+    EaseType: 12
+  LoopSettings:
+    LoopCount: 0
+    LoopType: 1
+  ExecutionSettings:
+    CanBeInterrupted: 1
+    ExecuteOnEnable: 1
+    StraightOnEnable: 1
+    ResetValueOnExecute: 1
+  OverrideValueOnAwake: 1
+  StartPosition: {x: 0, y: -928, z: 0}
+  SetCurrentPositionAsFinishValue: 1
+  FinishPosition: {x: 0, y: -508.09998, z: 0}
+  TransformToChange: {fileID: 8819649428040018491}
+--- !u!1 &6103436065649539670
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 9132144157501526264}
+  - component: {fileID: 6894968416462164433}
+  m_Layer: 5
+  m_Name: Animations
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &9132144157501526264
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6103436065649539670}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 316786537722756296}
+  m_Father: {fileID: 8819649429510691611}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &6894968416462164433
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6103436065649539670}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 234507d1c2c6c674ba53048302621152, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _tweensToExecute:
+  - {fileID: 8406688770542361569}
 --- !u!1 &8819649429510691615
 GameObject:
   m_ObjectHideFlags: 0
@@ -31,6 +149,7 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 9132144157501526264}
   - {fileID: 8819649428040018491}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -53,6 +172,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <WindowName>k__BackingField: MainWindow
+  _animationController: {fileID: 6894968416462164433}
   _canBeDisabled: 1
   <IsAdditive>k__BackingField: 0
   <IsBlockingPlayerInput>k__BackingField: 0
@@ -122,7 +242,7 @@ PrefabInstance:
     - target: {fileID: 5146999407232179480, guid: 077e5fb467ae0e842af0c4e86c6e0ca8,
         type: 3}
       propertyPath: m_RootOrder
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5146999407232179480, guid: 077e5fb467ae0e842af0c4e86c6e0ca8,
         type: 3}
