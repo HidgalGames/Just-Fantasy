@@ -25,6 +25,7 @@ namespace GameUI.Logic
             {
                 _blockersCount = 0;
                 Cursor.visible = false;
+                Cursor.lockState = CursorLockMode.Locked;
             }
 
         }
@@ -33,6 +34,7 @@ namespace GameUI.Logic
         {
             _blockersCount++;
             Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.None;
         }
 
         public void SwitchState()
