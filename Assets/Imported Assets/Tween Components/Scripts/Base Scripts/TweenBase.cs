@@ -88,6 +88,8 @@ namespace TweenComponents
         protected Tween _tween;
         protected bool _straight;
 
+        public bool IsStraight => _straight;
+
         public event Action OnStarted;
         public event Action OnCompleted;
 
