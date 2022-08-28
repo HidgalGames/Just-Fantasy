@@ -77,7 +77,7 @@ GameObject:
   - component: {fileID: 9132144157501526264}
   - component: {fileID: 6894968416462164433}
   m_Layer: 5
-  m_Name: Animations
+  m_Name: MainWindow Animations
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
