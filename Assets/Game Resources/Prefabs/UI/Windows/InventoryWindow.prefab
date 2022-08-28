@@ -1093,12 +1093,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 234507d1c2c6c674ba53048302621152, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _getTweensOnAwake: 1
+  _findMaxDurationTweenOnExecute: 0
   _tweensToExecute:
   - {fileID: 3758996294191495015}
   - {fileID: 5646422636438504095}
-  - {fileID: 0}
   - {fileID: 2381393605775986896}
   - {fileID: 2354309230370032584}
+  - {fileID: 5268050220602258477}
 --- !u!1 &5519804514739488078
 GameObject:
   m_ObjectHideFlags: 0

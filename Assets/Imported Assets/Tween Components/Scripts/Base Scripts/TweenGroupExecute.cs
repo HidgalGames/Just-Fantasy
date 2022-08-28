@@ -2,6 +2,8 @@ using System;
 using System.Linq;
 using TweenComponents;
 using UnityEngine;
+using System.Collections.Generic;
+using Unity.VisualScripting;
 
 #if UNITY_EDITOR
 using UnityEditor;
@@ -9,7 +11,11 @@ using UnityEditor;
 
 public class TweenGroupExecute : MonoBehaviour
 {
-    [SerializeField] private TweenBase[] _tweensToExecute;
+    [Header("Settings")]
+    [SerializeField] private bool _getTweensOnAwake;
+    [SerializeField] private bool _findMaxDurationTweenOnExecute;
+    [Header("Tweens")]
+    [SerializeField] private List<TweenBase> _tweensToExecute;
 
     private TweenBase _maxDurationTween;
 
@@ -17,14 +23,12 @@ public class TweenGroupExecute : MonoBehaviour
 
     private void Awake()
     {
-        _tweensToExecute = GetComponentsInChildren<TweenBase>();
-
-        _maxDurationTween = _tweensToExecute.OrderByDescending(tween => tween.Duration).FirstOrDefault();
-
-        if (_maxDurationTween)
+        if (_tweensToExecute == null || _tweensToExecute.Count == 0 || _getTweensOnAwake)
         {
-            _maxDurationTween.OnCompleted += OnTweenCompleted;
+            GetTweensFromChilds();
         }
+
+        GetMaxDurationTween();
     }
 
     private void OnDestroy()
@@ -37,6 +41,13 @@ public class TweenGroupExecute : MonoBehaviour
 
     public void Execute(bool isStraight = true)
     {
+        if (_findMaxDurationTweenOnExecute)
+        {
+            GetMaxDurationTween();
+        }
+
+        _maxDurationTween.OnCompleted += OnTweenCompleted;
+
         foreach (var tween in _tweensToExecute)
         {
             tween.Execute(isStraight);
@@ -51,19 +62,47 @@ public class TweenGroupExecute : MonoBehaviour
         }
     }
 
+    [ContextMenu("Get Tweens From Childs")]
+    private void GetTweensFromChilds()
+    {
+        if (_tweensToExecute == null)
+        {
+            _tweensToExecute = new List<TweenBase>();
+        }
+
+        var tweens = GetComponentsInChildren<TweenBase>().Where(tween => !_tweensToExecute.Contains(tween));
+
+        //remove null or missing elements
+        _tweensToExecute = _tweensToExecute.Where(tween => tween).ToList();
+
+        _tweensToExecute.AddRange(tweens);
+
+#if UNITY_EDITOR
+        if (!Application.isPlaying)
+        {
+            EditorUtility.SetDirty(this);
+        }
+#endif
+    }
+
+    private void GetMaxDurationTween()
+    {
+        _maxDurationTween = _tweensToExecute.OrderByDescending(tween => tween.Duration).FirstOrDefault();
+
+        if (_maxDurationTween)
+        {
+            _maxDurationTween.OnCompleted += OnTweenCompleted;
+        }
+    }
+
     private void OnTweenCompleted()
     {
+        _maxDurationTween.OnCompleted -= OnTweenCompleted;
+
         OnCompleted?.Invoke();
     }
 
 #if UNITY_EDITOR
-
-    [ContextMenu("Get Tweens From Childs")]
-    private void GetTweensFromChilds()
-    {
-        _tweensToExecute = GetComponentsInChildren<TweenBase>();
-        EditorUtility.SetDirty(this);
-    }
 
     [ContextMenu("Execute")]
     private void ExecuteStraight()

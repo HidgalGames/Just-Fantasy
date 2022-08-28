@@ -116,6 +116,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 234507d1c2c6c674ba53048302621152, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _getTweensOnAwake: 1
+  _findMaxDurationTweenOnExecute: 0
   _tweensToExecute:
   - {fileID: 1059756674202167893}
 --- !u!1 &8819649429510691615
