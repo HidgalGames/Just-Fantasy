@@ -67,6 +67,7 @@ public class PlayerInputHandler : MonoBehaviour
 
         if (isBlocked)
         {
+            IsRunning = false;
             _moveController.ForceStopMoving();
         }
     }
