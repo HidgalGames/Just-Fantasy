@@ -4,10 +4,13 @@ namespace GameUI.Logic
 {
     public class CursorController : MonoBehaviour
     {
+        [SerializeField] private Blockable _blockable;
         [SerializeField] private bool _cursorStateOnStart = false;
         [Header("Debug")]
         [SerializeField] private KeyCode _hotkeySwitcher = KeyCode.H;
         [ReadOnly] [SerializeField] private int _blockersCount = 0;
+
+        public bool IsBlocked => _blockable.IsBlocked;
 
         private void Awake()
         {
@@ -16,12 +19,9 @@ namespace GameUI.Logic
 
         public void HideCursor()
         {
-            if (_blockersCount > 0)
-            {
-                _blockersCount--;
-            }
+            _blockable.SetBlocked(false);
 
-            if (_blockersCount <= 0)
+            if (!IsBlocked)
             {
                 _blockersCount = 0;
                 Cursor.visible = false;
@@ -32,7 +32,8 @@ namespace GameUI.Logic
 
         public void ShowCursor()
         {
-            _blockersCount++;
+            _blockable.SetBlocked(true);
+
             Cursor.visible = true;
             Cursor.lockState = CursorLockMode.None;
         }
