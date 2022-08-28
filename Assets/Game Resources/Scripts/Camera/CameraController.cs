@@ -15,6 +15,9 @@ public class CameraController : MonoBehaviour
 
     private UniversalAdditionalCameraData _mainCameraData;
 
+    private float _ySpeedBase;
+    private float _xSpeedBase;
+
     public bool IsBlocked => _blockable.IsBlocked;
     public CameraFovController FovController => _fovControler;
     public CinemachineFreeLook ThirdPersonCamera => _thirdPersonCamera;
@@ -23,6 +26,9 @@ public class CameraController : MonoBehaviour
     {
         ThirdPersonCamera.Follow = _player.transform;
         ThirdPersonCamera.LookAt = _player.transform;
+
+        _ySpeedBase = ThirdPersonCamera.m_YAxis.m_MaxSpeed;
+        _xSpeedBase = ThirdPersonCamera.m_XAxis.m_MaxSpeed;
 
         _mainCameraData = _mainCamera.GetUniversalAdditionalCameraData();
     }
@@ -36,7 +42,8 @@ public class CameraController : MonoBehaviour
     {
         _blockable.SetBlocked(isBlocked);
 
-        _thirdPersonCamera.gameObject.SetActive(!IsBlocked);
+        _thirdPersonCamera.m_YAxis.m_MaxSpeed = IsBlocked ? 0 : _ySpeedBase;
+        _thirdPersonCamera.m_XAxis.m_MaxSpeed = IsBlocked ? 0 : _xSpeedBase;
     }
 
     public void AddOverlayCameraToStack(Camera camera)
