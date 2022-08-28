@@ -7,4 +7,15 @@ public class Item : MonoBehaviour
     [field: SerializeField] public string DisplayName { get; protected set; }
     [field: SerializeField] public Sprite ItemIcon { get; protected set; }
     [field: TextArea] [field: SerializeField] public string Description { get; protected set; }
+    [field: SerializeField] public ItemRarity Rarity { get; protected set; } = ItemRarity.Usual;
+
+    public virtual void SetRarity(ItemRarity rarity)
+    {
+        Rarity = rarity;
+    }
+
+    public virtual string[] GetCharacteristics()
+    {
+        return default;
+    }
 }
