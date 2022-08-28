@@ -739,7 +739,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4757211917502039510}
-  - component: {fileID: 6865587446894430596}
+  - component: {fileID: 5268050220602258477}
   m_Layer: 5
   m_Name: Text Animation
   m_TagString: Untagged
@@ -767,7 +767,7 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &6865587446894430596
+--- !u!114 &5268050220602258477
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -776,12 +776,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 4131804117479495821}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8409a29d24730a842b2564856860f394, type: 3}
+  m_Script: {fileID: 11500000, guid: 378cec3c357d94647b6e164405f93c4c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   BaseSettings:
     StartDelay: 0
-    Duration: 0.6
+    Duration: 0.4
     EaseType: 12
   LoopSettings:
     LoopCount: 0
@@ -792,9 +792,9 @@ MonoBehaviour:
     StraightOnEnable: 1
     ResetValueOnExecute: 1
   OverrideValueOnAwake: 1
-  StartPosition: {x: 0, y: 887.1318, z: 0}
-  SetCurrentPositionAsFinishValue: 0
-  FinishPosition: {x: 0, y: 489.61578, z: 0}
+  StartPosition: {x: 0, y: 220, z: 0}
+  SetCurrentPositionAsFinishValue: 1
+  FinishPosition: {x: 0, y: 0, z: 0}
   TransformToChange: {fileID: 7190516052383603442}
 --- !u!1 &4197624905952228658
 GameObject:
@@ -1096,7 +1096,7 @@ MonoBehaviour:
   _tweensToExecute:
   - {fileID: 3758996294191495015}
   - {fileID: 5646422636438504095}
-  - {fileID: 6865587446894430596}
+  - {fileID: 0}
   - {fileID: 2381393605775986896}
   - {fileID: 2354309230370032584}
 --- !u!1 &5519804514739488078

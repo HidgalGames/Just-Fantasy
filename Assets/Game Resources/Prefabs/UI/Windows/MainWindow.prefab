@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 316786537722756296}
-  - component: {fileID: 8406688770542361569}
+  - component: {fileID: 1059756674202167893}
   m_Layer: 5
   m_Name: Healthbar Animation
   m_TagString: Untagged
@@ -37,7 +37,7 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &8406688770542361569
+--- !u!114 &1059756674202167893
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -46,12 +46,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 279640547156041369}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8409a29d24730a842b2564856860f394, type: 3}
+  m_Script: {fileID: 11500000, guid: 378cec3c357d94647b6e164405f93c4c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   BaseSettings:
     StartDelay: 0
-    Duration: 0.3
+    Duration: 0.4
     EaseType: 12
   LoopSettings:
     LoopCount: 0
@@ -62,9 +62,9 @@ MonoBehaviour:
     StraightOnEnable: 1
     ResetValueOnExecute: 1
   OverrideValueOnAwake: 1
-  StartPosition: {x: 0, y: -928, z: 0}
+  StartPosition: {x: 0, y: -100, z: 0}
   SetCurrentPositionAsFinishValue: 1
-  FinishPosition: {x: 0, y: -508.09998, z: 0}
+  FinishPosition: {x: 0, y: 0, z: 0}
   TransformToChange: {fileID: 8819649428040018491}
 --- !u!1 &6103436065649539670
 GameObject:
@@ -117,7 +117,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _tweensToExecute:
-  - {fileID: 8406688770542361569}
+  - {fileID: 1059756674202167893}
 --- !u!1 &8819649429510691615
 GameObject:
   m_ObjectHideFlags: 0
@@ -177,6 +177,8 @@ MonoBehaviour:
   <IsAdditive>k__BackingField: 0
   <IsBlockingPlayerInput>k__BackingField: 0
   <IsCursorVisible>k__BackingField: 0
+  <IsMainCameraEnabled>k__BackingField: 1
+  _switchWithWindow: []
   <IsOpened>k__BackingField: 0
 --- !u!223 &8819649429510691612
 Canvas:
