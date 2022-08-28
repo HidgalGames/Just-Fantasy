@@ -17,10 +17,7 @@ public class TweenGroupExecute : MonoBehaviour
 
     private void Awake()
     {
-        if (_tweensToExecute == null || _tweensToExecute.Length == 0)
-        {
-            _tweensToExecute = GetComponentsInChildren<TweenBase>();
-        }
+        _tweensToExecute = GetComponentsInChildren<TweenBase>();
 
         _maxDurationTween = _tweensToExecute.OrderByDescending(tween => tween.Duration).FirstOrDefault();
 
