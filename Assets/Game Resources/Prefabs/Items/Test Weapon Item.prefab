@@ -48,5 +48,5 @@ MonoBehaviour:
   <DisplayName>k__BackingField: Ebanyi Top
   <ItemIcon>k__BackingField: {fileID: 0}
   <Description>k__BackingField: The best sword in the world suka
-  <Rarity>k__BackingField: 3
-  <Damage>k__BackingField: {x: 1, y: 10000}
+  <Rarity>k__BackingField: 4
+  <Damage>k__BackingField: {x: 9999, y: 10000}

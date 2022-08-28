@@ -10,7 +10,7 @@ public class ItemInfoUI : MonoBehaviour
     [SerializeField] private Canvas _canvas;
     [Space]
     [SerializeField] private ItemRarityColors _colorsList;
-    [SerializeField] private Image _textBackground;
+    [SerializeField] private Image[] _coloredParts;
     [SerializeField] private Image _infoBackground;
     [Space]
     [SerializeField] private TextMeshProUGUI[] _itemNameTexts;
@@ -45,7 +45,11 @@ public class ItemInfoUI : MonoBehaviour
     {
         if (!item) return;
         
-        _textBackground.color = _colorsList.RarityColors[(int)item.Rarity];
+        var color = _colorsList.RarityColors[(int)item.Rarity];
+        foreach (var part in _coloredParts)
+        {
+            part.color = color;
+        }
 
         foreach(var nameText in _itemNameTexts)
         {
