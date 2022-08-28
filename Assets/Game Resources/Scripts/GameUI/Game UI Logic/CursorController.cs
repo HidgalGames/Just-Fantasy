@@ -8,7 +8,6 @@ namespace GameUI.Logic
         [SerializeField] private bool _cursorStateOnStart = false;
         [Header("Debug")]
         [SerializeField] private KeyCode _hotkeySwitcher = KeyCode.H;
-        [ReadOnly] [SerializeField] private int _blockersCount = 0;
 
         public bool IsBlocked => _blockable.IsBlocked;
 
@@ -23,7 +22,6 @@ namespace GameUI.Logic
 
             if (!IsBlocked)
             {
-                _blockersCount = 0;
                 Cursor.visible = false;
                 Cursor.lockState = CursorLockMode.Locked;
             }
