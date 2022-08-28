@@ -34,17 +34,11 @@ public class ItemInfoUI : MonoBehaviour
     private void Awake()
     {
         _rect = transform as RectTransform;
-        _scaleAnimation.OnCompleted += UpdateLayout;
     }
 
     private void Start()
     {
         UpdateLayoutOutOfScreen();
-    }
-
-    private void OnDestroy()
-    {
-        _scaleAnimation.OnCompleted -= UpdateLayout;
     }
 
     public void ShowItemInfo(Item item)
@@ -113,11 +107,6 @@ public class ItemInfoUI : MonoBehaviour
         _rect.position = Vector3.right * 10000f;
         _rect.localScale = Vector3.one;
 
-        UpdateLayout();
-    }
-
-    private void UpdateLayout()
-    {
         LayoutRebuilder.ForceRebuildLayoutImmediate(_rect);
         LayoutRebuilder.ForceRebuildLayoutImmediate(_charachteristicsParent);
         LayoutRebuilder.ForceRebuildLayoutImmediate(_infoBackground.rectTransform);
