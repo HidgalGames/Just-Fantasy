@@ -20,8 +20,10 @@ namespace GameUI.Logic
         [field: SerializeField] public bool IsAdditive { get; private set; } = true;
         [field: SerializeField] public bool IsBlockingPlayerInput { get; private set; }
         [field: SerializeField] public bool IsCursorVisible { get; private set; }
+        [Space]
+        [SerializeField] private GameObject[] _switchWithWindow;
 
-        //for debug
+
         [field: Header("Debug")]
         [field: ReadOnly] [field: SerializeField] public bool IsOpened { get; private set; } = true;
 
@@ -32,7 +34,10 @@ namespace GameUI.Logic
         private void Awake()
         {
             _canvases = new List<Canvas>(GetComponentsInChildren<Canvas>());
-            _canvases.Add(GetComponent<Canvas>());
+            if (TryGetComponent<Canvas>(out var canvas))
+            {
+                _canvases.Add(canvas);
+            }
         }
 
         public void SwitchState()
@@ -63,6 +68,8 @@ namespace GameUI.Logic
                 {
                     canvas.enabled = isActive;
                 }
+
+                SwitchWindowObjects(isActive);
             }
 
             OnWindowStateChanged?.Invoke(this, IsOpened);
@@ -75,6 +82,16 @@ namespace GameUI.Logic
             foreach (var canvas in _canvases)
             {
                 canvas.enabled = false;
+            }
+
+            SwitchWindowObjects(false);
+        }
+
+        private void SwitchWindowObjects(bool isActive)
+        {
+            foreach (var obj in _switchWithWindow)
+            {
+                obj.SetActive(isActive);
             }
         }
 
