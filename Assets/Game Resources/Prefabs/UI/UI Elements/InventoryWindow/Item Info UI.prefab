@@ -113,7 +113,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   BaseSettings:
     StartDelay: 0
-    Duration: 0.4
+    Duration: 0.2
     EaseType: 12
   LoopSettings:
     LoopCount: 0
@@ -192,7 +192,7 @@ MonoBehaviour:
   m_ChildControlHeight: 1
   m_ChildScaleWidth: 1
   m_ChildScaleHeight: 1
-  m_ReverseArrangement: 0
+  m_ReverseArrangement: 1
 --- !u!114 &6057460611367766147
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1154,8 +1154,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cbc0b4b6fe15cdb45ba560756e20e951, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _canvas: {fileID: 0}
   _colorsList: {fileID: 11400000, guid: 935e54ecad8a1ef43995c04a80c7cf74, type: 2}
   _textBackground: {fileID: 2419588934498651801}
+  _infoBackground: {fileID: 4140710805148455218}
   _itemNameTexts:
   - {fileID: 774901727978480468}
   - {fileID: 8956126062658384573}
@@ -1164,6 +1166,7 @@ MonoBehaviour:
   _characteristicPrefab: {fileID: 6558683643860760034, guid: 1a82a5f34896256489e61fac7e1b84b8,
     type: 3}
   _scaleAnimation: {fileID: 8250347215171517007}
+  _fontSizes: {x: 22, y: 30}
 --- !u!114 &6737494364657187647
 MonoBehaviour:
   m_ObjectHideFlags: 0

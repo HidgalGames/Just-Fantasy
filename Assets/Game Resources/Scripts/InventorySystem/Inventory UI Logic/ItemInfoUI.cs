@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using TweenComponents;
@@ -6,8 +7,11 @@ using UnityEngine.UI;
 
 public class ItemInfoUI : MonoBehaviour
 {
+    [SerializeField] private Canvas _canvas;
+    [Space]
     [SerializeField] private ItemRarityColors _colorsList;
     [SerializeField] private Image _textBackground;
+    [SerializeField] private Image _infoBackground;
     [Space]
     [SerializeField] private TextMeshProUGUI[] _itemNameTexts;
     [SerializeField] private TextMeshProUGUI _itemDescription;
@@ -16,25 +20,37 @@ public class ItemInfoUI : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _characteristicPrefab;
     [Space]
     [SerializeField] private ChangeScaleTween _scaleAnimation;
-    [Space]
-    [Header("Debug")]
-    [SerializeField] private Item _testItem;
+
+    [Header("Settings")]
+    [Tooltip("Min and Max size for characteristic line")]
+    [SerializeField] private Vector2Int _fontSizes;
 
     private List<TextMeshProUGUI> _characteriscticLines = new List<TextMeshProUGUI>();
 
     private RectTransform _rect;
 
-    private bool _isEnabled = false;
+    public bool IsEnabled { get; private set; } = false;
 
     private void Awake()
     {
         _rect = transform as RectTransform;
+        _scaleAnimation.OnCompleted += UpdateLayout;
+    }
+
+    private void Start()
+    {
+        UpdateLayoutOutOfScreen();
+    }
+
+    private void OnDestroy()
+    {
+        _scaleAnimation.OnCompleted -= UpdateLayout;
     }
 
     public void ShowItemInfo(Item item)
     {
         if (!item) return;
-
+        
         _textBackground.color = _colorsList.RarityColors[(int)item.Rarity];
 
         foreach(var nameText in _itemNameTexts)
@@ -43,10 +59,9 @@ public class ItemInfoUI : MonoBehaviour
         }
 
         var itemCharacteristics = item.GetCharacteristics();
-
         var maxCount = Mathf.Max(itemCharacteristics.Length, _characteriscticLines.Count);
 
-        for (int i = 0; i < maxCount; i++)
+        for (int i = maxCount - 1; i >= 0; i--)
         {
             if(i >= _characteriscticLines.Count)
             {
@@ -60,49 +75,51 @@ public class ItemInfoUI : MonoBehaviour
             else
             {
                 _characteriscticLines[i].text = itemCharacteristics[i];
+
+                //first line with characteristic should be greater than others
+                if(i >= itemCharacteristics.Length - 1)
+                {
+                    _characteriscticLines[i].fontSize = _fontSizes.y;
+                }
+                else
+                {
+                    _characteriscticLines[i].fontSize = _fontSizes.x;
+                }
             }
         }
 
         _itemDescription.text = item.Description;
 
-        _rect.anchoredPosition = Input.mousePosition;
+        UpdateLayoutOutOfScreen();
+
+        var pos = Input.mousePosition;
+        pos.z = _canvas.planeDistance;       
+        _rect.position = _canvas.worldCamera.ScreenToWorldPoint(pos);
 
         _scaleAnimation.Execute(true);
-
-        _isEnabled = true;
+        IsEnabled = true;
     }
 
     public void HideInfo()
     {
-        if (!_isEnabled) return;
+        if (!IsEnabled) return;
 
-        _isEnabled = false;
+        IsEnabled = false;
         _scaleAnimation.Execute(false);
     }
 
-#if UNITY_EDITOR
-
-    private void Update()
+    private void UpdateLayoutOutOfScreen()
     {
-        if (Input.GetKeyDown(KeyCode.F))
-        {
-            SwitchTestInfo();
-        }
+        _rect.position = Vector3.right * 10000f;
+        _rect.localScale = Vector3.one;
+
+        UpdateLayout();
     }
 
-    private void SwitchTestInfo()
+    private void UpdateLayout()
     {
-        if (!_testItem) return;
-
-        if (_isEnabled)
-        {
-            HideInfo();
-        }
-        else
-        {
-            ShowItemInfo(_testItem);
-        }
+        LayoutRebuilder.ForceRebuildLayoutImmediate(_rect);
+        LayoutRebuilder.ForceRebuildLayoutImmediate(_charachteristicsParent);
+        LayoutRebuilder.ForceRebuildLayoutImmediate(_infoBackground.rectTransform);
     }
-
-#endif
 }

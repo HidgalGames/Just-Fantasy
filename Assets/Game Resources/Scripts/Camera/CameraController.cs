@@ -21,6 +21,7 @@ public class CameraController : MonoBehaviour
     public bool IsBlocked => _blockable.IsBlocked;
     public CameraFovController FovController => _fovControler;
     public CinemachineFreeLook ThirdPersonCamera => _thirdPersonCamera;
+    public Camera MainCamera => _mainCamera;
 
     private void Awake()
     {
