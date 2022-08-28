@@ -27,6 +27,11 @@ public class CameraController : MonoBehaviour
         _mainCameraData = _mainCamera.GetUniversalAdditionalCameraData();
     }
 
+    public void SetState(bool isActive)
+    {
+        _mainCamera.enabled = isActive;
+    }
+
     public void SetBlocked(bool isBlocked)
     {
         _blockable.SetBlocked(isBlocked);

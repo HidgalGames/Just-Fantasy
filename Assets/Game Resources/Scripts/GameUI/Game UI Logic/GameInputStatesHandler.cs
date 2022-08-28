@@ -26,5 +26,10 @@ public class GameInputStatesHandler : MonoBehaviour
         _cursorController.SetState(isEnabled && window.IsCursorVisible);
         _inputHandler.SetBlocked(isEnabled && window.IsBlockingPlayerInput);
         _cameraController.SetBlocked(isEnabled && window.IsBlockingPlayerInput);
+
+        if (!window.IsAdditive)
+        {
+            _cameraController.SetState(isEnabled ? window.IsMainCameraEnabled : true);
+        }
     }
 }

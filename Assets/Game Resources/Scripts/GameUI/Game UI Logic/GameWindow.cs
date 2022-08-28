@@ -20,6 +20,7 @@ namespace GameUI.Logic
         [field: SerializeField] public bool IsAdditive { get; private set; } = true;
         [field: SerializeField] public bool IsBlockingPlayerInput { get; private set; }
         [field: SerializeField] public bool IsCursorVisible { get; private set; }
+        [field: SerializeField] public bool IsMainCameraEnabled { get; private set; } = true;
         [Space]
         [SerializeField] private GameObject[] _switchWithWindow;
 
