@@ -420,6 +420,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _blockable: {fileID: 2965853514502680677}
   _fovControler: {fileID: 5178764065850749498}
+  _mainCamera: {fileID: 5178764065850749502}
   _thirdPersonCamera: {fileID: 5178764065564416490}
 --- !u!114 &5178764065850749498
 MonoBehaviour:
