@@ -523,6 +523,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 30bae6b0ae49fd84da2f3f3b4bb3c53f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  <Animator>k__BackingField: {fileID: 5082932108927073538}
   <HealthSystem>k__BackingField: {fileID: 1720558106563571678}
   <InputHandler>k__BackingField: {fileID: 1720558104943652362}
   <MoveController>k__BackingField: {fileID: 1720558105152282412}
